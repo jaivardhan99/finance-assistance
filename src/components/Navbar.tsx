@@ -1,11 +1,13 @@
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import { TrendingUp } from "lucide-react";
 
 const links = [
   { name: "Dashboard", path: "/dashboard" },
   { name: "Portfolio", path: "/portfolio" },
   { name: "Goals", path: "/goals" },
   { name: "Learn", path: "/learn" },
+  { name: "StockPrices", path: "/stockprices" },
   { name: "GeminiChatBot", path: "/geminichatbot" },
   { name: "Settings", path: "/settings" },
 ];
@@ -19,7 +21,10 @@ export default function Navbar() {
       className="bg-white sticky top-0 z-50 shadow-md border-b border-gray-200"
     >
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-indigo-600">FinanceAI</h1>
+        <div className="flex items-center space-x-2">
+          <TrendingUp className="text-indigo-600 h-6 w-6" />
+          <h1 className="text-xl font-bold text-indigo-600">FinanceAI</h1>
+        </div>
         <div className="flex space-x-6">
           {links.map((link) => (
             <NavLink

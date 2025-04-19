@@ -17,7 +17,8 @@ const Learn = () => {
                 alt="Investment basics"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div   onClick={() => window.open("https://youtu.be/Xn7KWR9EOGQ?si=PN12-CYr72bncT_V", "_blank")}
+              className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center cursor-pointer">
                 <Play className="h-12 w-12 text-white" />
               </div>
             </div>
@@ -27,11 +28,9 @@ const Learn = () => {
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center">
                   <Clock className="h-4 w-4 text-gray-400" />
-                  <span className="ml-1 text-sm text-gray-500">2.5 hours</span>
+                  <span className="ml-1 text-sm text-gray-500">1.5 hours</span>
                 </div>
                 <div className="flex items-center">
-                  <Award className="h-4 w-4 text-yellow-400" />
-                  <span className="ml-1 text-sm text-gray-500">Certificate</span>
                 </div>
               </div>
             </div>
@@ -45,7 +44,8 @@ const Learn = () => {
                 alt="Retirement planning"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div onClick={()=>window.open("https://youtu.be/uO8EoK6wUIY?si=D97LWq5QcYwa9ZUQ", "_blank")}
+              className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center cursor-pointer">
                 <Play className="h-12 w-12 text-white" />
               </div>
             </div>
@@ -55,11 +55,9 @@ const Learn = () => {
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center">
                   <Clock className="h-4 w-4 text-gray-400" />
-                  <span className="ml-1 text-sm text-gray-500">3 hours</span>
+                  <span className="ml-1 text-sm text-gray-500">0.5 hour</span>
                 </div>
                 <div className="flex items-center">
-                  <Award className="h-4 w-4 text-yellow-400" />
-                  <span className="ml-1 text-sm text-gray-500">Certificate</span>
                 </div>
               </div>
             </div>
@@ -73,7 +71,8 @@ const Learn = () => {
                 alt="Tax strategies"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div onClick={()=>window.open("https://youtu.be/njN6rVIr9gM?si=yQZK1vQqgu4EXC12", "_blank")} 
+              className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center cursor-pointer">
                 <Play className="h-12 w-12 text-white" />
               </div>
             </div>
@@ -83,11 +82,9 @@ const Learn = () => {
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center">
                   <Clock className="h-4 w-4 text-gray-400" />
-                  <span className="ml-1 text-sm text-gray-500">2 hours</span>
+                  <span className="ml-1 text-sm text-gray-500">0.5 hour</span>
                 </div>
                 <div className="flex items-center">
-                  <Award className="h-4 w-4 text-yellow-400" />
-                  <span className="ml-1 text-sm text-gray-500">Certificate</span>
                 </div>
               </div>
             </div>
