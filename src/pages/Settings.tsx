@@ -1,11 +1,13 @@
 import React from 'react';
 import { Settings as SettingsIcon, Bell, Lock, User, PieChart } from 'lucide-react';
+import { useSelector } from 'react-redux';
 
 const Settings = () => {
+  const username = useSelector((state: any) => state.auth?.user?.username);
   return (
     <div className="p-6">
       <h1 className="text-2xl font-semibold text-gray-900">Settings</h1>
-
+      {username && <p className="text-sm text-gray-600">Welcome, {username} 👋</p>}
       <div className="mt-6">
         <div className="bg-white shadow rounded-lg">
           {/* Profile Settings */}

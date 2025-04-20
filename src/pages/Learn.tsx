@@ -1,11 +1,13 @@
 import React from 'react';
 import { BookOpen, Play, Award, Clock } from 'lucide-react';
+import { useSelector } from 'react-redux';
 
 const Learn = () => {
+  const username = useSelector((state: any) => state.auth?.user?.username);
   return (
     <div className="p-6">
       <h1 className="text-2xl font-semibold text-gray-900">Financial Education</h1>
-      
+      {username && <p className="text-sm text-gray-600">Welcome, {username} 👋</p>}
       <div className="mt-6">
         <h2 className="text-lg font-medium text-gray-900 mb-4">Recommended Courses</h2>
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">

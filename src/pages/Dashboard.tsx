@@ -1,7 +1,9 @@
 import { TrendingUp, Percent, LineChart } from "lucide-react";
 import { motion } from "framer-motion";
+import { useSelector } from 'react-redux';
 
 export default function Dashboard() {
+  const username = useSelector((state: any) => state.auth?.user?.username);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -10,7 +12,7 @@ export default function Dashboard() {
       className="p-6 space-y-8"
     >
       <h1 className="text-3xl font-bold text-indigo-600">📊 Financial Dashboard</h1>
-
+      {username && <p className="text-sm text-gray-600">Welcome, {username} 👋</p>}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Card 1 */}
         <motion.div

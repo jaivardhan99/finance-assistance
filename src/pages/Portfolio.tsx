@@ -2,6 +2,7 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import {IndianRupee, PieChart, TrendingUp } from 'lucide-react';
+import { useSelector } from 'react-redux';
 
 ChartJS.register(
   CategoryScale,
@@ -14,6 +15,7 @@ ChartJS.register(
 );
 
 const Portfolio = () => {
+  const username = useSelector((state: any) => state.auth?.user?.username);
   const chartData = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     datasets: [
@@ -42,7 +44,7 @@ const Portfolio = () => {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-semibold text-gray-900">Portfolio Overview</h1>
-      
+      {username && <p className="text-sm text-gray-600">Welcome, {username} 👋</p>}
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="bg-white p-6 rounded-lg shadow">
           <div className="flex items-center">
