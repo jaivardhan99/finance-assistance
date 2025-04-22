@@ -1,5 +1,4 @@
 const mongoose= require('mongoose');
-mongoose.connect('mongodb+srv://himanadhkondabathini:1234@cluster0.y77ij.mongodb.net/');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const {Schema}= mongoose;

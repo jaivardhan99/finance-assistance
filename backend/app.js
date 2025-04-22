@@ -7,7 +7,7 @@ const User = require('./schemas/user');
 const goalRoutes= require('./routes/goal');
 const stockRoutes= require('./routes/stock');
 
-mongoose.connect('mongodb+srv://himanadhkondabathini:1234@cluster0.y77ij.mongodb.net/');
+mongoose.connect('mongodb+srv://himanadhkondabathini:1234@cluster0.y77ij.mongodb.net/finance?retryWrites=true&w=majority');
 const app = express();
 
 // Enable CORS
@@ -42,9 +42,7 @@ app.post('/user/register', async (req, res) => {
     res.status(201).json({ message: 'User registered' });
   } catch (err) {
     console.log(err)
-    if(err==UserExistsError){
-        res.status(400).json({ message:'UserExists' });
-    }
+    
     res.status(400).json({ error: err.message });
   }
 });
