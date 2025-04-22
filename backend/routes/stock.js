@@ -2,7 +2,7 @@ const express= require('express')
 const mongoose= require('mongoose')
 const User= require('../schemas/user')
 
-mongoose.connect('mongodb://127.0.0.1:27017/finance');
+mongoose.connect('mongodb+srv://himanadhkondabathini:1234@cluster0.y77ij.mongodb.net/');
 
 const router= express.Router()
 

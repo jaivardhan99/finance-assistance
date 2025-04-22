@@ -7,13 +7,12 @@ const User = require('./schemas/user');
 const goalRoutes= require('./routes/goal');
 const stockRoutes= require('./routes/stock');
 
-mongoose.connect('mongodb://127.0.0.1:27017/finance');
-
+mongoose.connect('mongodb+srv://himanadhkondabathini:1234@cluster0.y77ij.mongodb.net/');
 const app = express();
 
 // Enable CORS
 app.use(cors({
-  origin: 'http://localhost:5173', // your frontend's URL
+  origin: 'http://localhost:5174', // your frontend's URL
   credentials: true, // allow cookies (needed for sessions)
 }));
 
