@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { login } from '../store/auth';
 import { useNavigate } from 'react-router-dom';
+import { div } from 'framer-motion/client';
 
 const Login: React.FC = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -15,6 +16,10 @@ const Login: React.FC = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const handleRegister=()=>{
+    navigate('/register');
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +40,8 @@ const Login: React.FC = () => {
   };
 
   return (
+    <div>
+      <button onClick={handleRegister}>Register</button>
     <form onSubmit={handleSubmit} style={{ maxWidth: '400px', margin: 'auto' }}>
       <h2>Login</h2>
       <label>
@@ -61,6 +68,7 @@ const Login: React.FC = () => {
       <br />
       <button type="submit">Login</button>
     </form>
+    </div>
   );
 };
 
