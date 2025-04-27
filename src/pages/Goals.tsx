@@ -92,22 +92,37 @@ const Goals = () => {
       </div>
 
       {/* Goals List */}
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {customGoals.map((goal) => (
-          <div  className="bg-white rounded-lg shadow p-4 relative">
-            <h3 className="text-lg font-semibold">{goal.name}</h3>
-            <p className="text-sm text-gray-500 mb-1">Target: ₹{goal.target}</p>
-            <p className="text-sm text-gray-500 mb-1">Target Date: ₹{goal.targetDate}</p>
-            <p className="text-sm text-gray-500">Monthly SIP: ₹{goal.monthSPI}</p>
-            <button
-              onClick={(e) => handleDelete(e,goal.name)}
-              className="absolute top-2 right-2 text-gray-400 hover:text-red-500"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
-        ))}
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {customGoals.map((goal) => (
+    <div className="relative rounded-2xl border border-gray-200 bg-gradient-to-br from-white via-gray-50 to-gray-100 p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
+      
+      {/* Goal Header */}
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-xl font-bold text-gray-800">{goal.name}</h3>
+        <button
+          onClick={(e) => handleDelete(e, goal.name)}
+          className="text-gray-400 hover:text-red-500 transition-colors duration-200"
+        >
+          <X className="h-5 w-5" />
+        </button>
       </div>
+
+      {/* Goal Details */}
+      <div className="space-y-2 text-sm text-gray-600">
+        <p>
+          <span className="font-medium text-gray-700">🎯 Target:</span> ₹{goal.target}
+        </p>
+        <p>
+          <span className="font-medium text-gray-700">📅 Target Date:</span> {goal.targetDate}
+        </p>
+        <p>
+          <span className="font-medium text-gray-700">💸 Monthly SIP:</span> ₹{goal.monthSPI}
+        </p>
+      </div>
+      
+    </div>
+  ))}
+</div>
 
       {/* Modal */}
       {showModal && (
