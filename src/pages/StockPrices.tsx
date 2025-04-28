@@ -101,7 +101,9 @@ const StockPrices: FC = () => {
     const fetchStocks = async () => {
       if (!username) return;
       try {
-        const res = await axios.get(`http://localhost:3000/stocks/getPortfolio/${username}`);
+        const res = await axios.get(`http://localhost:3000/stocks/getPortfolio/${username}`,{
+          withCredentials: true
+        });
         const portfolioStocks = res.data.portfolio;
 
         // Map the portfolio data with the stock market data

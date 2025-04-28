@@ -68,7 +68,13 @@ const UserSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  historicalPortfolioValues: [
+    {
+        date: Date,
+        value: Number
+    }
+  ]
 });
 
 // Plugin passport-local-mongoose (handles password hashing etc.)

@@ -1,10 +1,102 @@
 const express= require('express')
 const mongoose= require('mongoose')
 const User= require('../schemas/user')
-
-
+const axios = require('axios');
 
 const router= express.Router()
+
+// Authentication middleware
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.status(401).json({ message: 'Not authenticated' });
+}
+
+// Apply authentication middleware to all routes
+router.use(isAuthenticated);
+
+// Get stock prices
+router.get('/prices', async (req, res) => {
+  try {
+    const { symbols } = req.query;
+    if (!symbols) {
+      return res.status(400).json({ message: 'Symbols parameter is required' });
+    }
+
+    // In a real app, you would fetch from a stock API
+    // This is a mock implementation
+    const mockPrices = {
+      'AAPL': 150.0,
+      'GOOGL': 2800.0,
+      'MSFT': 300.0,
+      'AMZN': 3500.0,
+      'NFLX': 600.0
+    };
+
+    const prices = {};
+    symbols.split(',').forEach(symbol => {
+      prices[symbol] = mockPrices[symbol] || 0;
+    });
+
+    res.json({ prices });
+  } catch (error) {
+    console.error('Error fetching stock prices:', error);
+    res.status(500).json({ message: 'Error fetching stock prices' });
+  }
+});
+
+// Get historical portfolio value
+router.get('/historicalPortfolioValue/:username', async (req, res) => {
+  try {
+    const { username } = req.params;
+    const { symbols, range } = req.query;
+
+    if (!username || !symbols) {
+      return res.status(400).json({ message: 'Username and symbols are required' });
+    }
+
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Mock historical data
+    const historicalData = [];
+    const endDate = new Date();
+    let startDate = new Date();
+
+    switch (range) {
+      case '1W':
+        startDate.setDate(endDate.getDate() - 7);
+        break;
+      case '1M':
+        startDate.setMonth(endDate.getMonth() - 1);
+        break;
+      case '3M':
+        startDate.setMonth(endDate.getMonth() - 3);
+        break;
+      case '6M':
+        startDate.setMonth(endDate.getMonth() - 6);
+        break;
+      default:
+        startDate.setMonth(endDate.getMonth() - 3);
+    }
+
+    // Generate mock data points
+    for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+      historicalData.push({
+        date: d.toISOString().split('T')[0],
+        value: Math.random() * 10000 + 50000 // Random value between 50k and 60k
+      });
+    }
+
+    res.json({ historicalData });
+  } catch (error) {
+    console.error('Error fetching historical data:', error);
+    res.status(500).json({ message: 'Error fetching historical data' });
+  }
+});
 
 router.get('/getStocks/:username',async(req,res)=>{
     const {username}= req.params;
