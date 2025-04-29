@@ -6,70 +6,106 @@ const cors = require('cors');
 const User = require('./schemas/user');
 const goalRoutes= require('./routes/goal');
 const stockRoutes= require('./routes/stock');
-const DB_URI = 'mongodb+srv://himanadhkondabathini:1234@cluster0.y77ij.mongodb.net/finance?retryWrites=true&w=majority&appName=Cluster0';
 
-mongoose.connect(DB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})  .then(() => console.log('✅ MongoDB connected'))
-.catch(err => console.error('❌ MongoDB connection error:', err.message));
-
-
-// mongoose.connect('mongodb+srv://himanadhkondabathini:1234@cluster0.y77ij.mongodb.net/finance?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://himanadhkondabathini:1234@cluster0.y77ij.mongodb.net/finance?retryWrites=true&w=majority');
 const app = express();
 
 // Enable CORS
 app.use(cors({
-  origin: 'http://localhost:5173', // your frontend's URL
+  origin: 'http://localhost:5174', // your frontend's URL
   credentials: true, // allow cookies (needed for sessions)
 }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Session configuration
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
+  cookie: {
+    secure: false, // Set to true in production with HTTPS
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
 }));
 
+// Initialize passport and restore authentication state from session
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Passport config
-require('./passport')(passport); // if you split config; else define inline
+require('./passport')(passport);
 
 // Register
 app.post('/user/register', async (req, res) => {
-    console.log(req.body)
-    console.log("Hiiteed")
   const { username, password, email } = req.body;
   try {
     const user = new User({ username, email });
-    await User.register(user, password); // from passport-local-mongoose
+    await User.register(user, password);
     res.status(201).json({ message: 'User registered' });
   } catch (err) {
-    console.log(err)
-    
+    console.error('Registration error:', err);
     res.status(400).json({ error: err.message });
   }
 });
 
 // Login
-app.post('/user/login', passport.authenticate('local'), (req, res) => {
-  res.json({ message: 'Logged in', user: req.user });
+app.post('/user/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (!user) {
+      return res.status(401).json({ error: info.message });
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      return res.json({ message: 'Logged in', user: { id: user._id, username: user.username } });
+    });
+  })(req, res, next);
 });
 
+// Logout
+app.post('/user/logout', (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json({ message: 'Logged out' });
+  });
+});
+
+app.post('/user/amount/add',async(req,res)=>{
+  const {username,money}= req.body;
+  const user= await User.findOne({username});
+  user.totalAmount+=money;
+  if(user.totalAmount<=0)
+    user.totalAmount=0;
+  await user.save();
+  res.status(200).json({message:"Successful"})
+})
+
+app.post('/user/amount/remove',async(req,res)=>{
+  const {username,money}= req.body;
+  const user= await User.findOne({username});
+  user.totalAmount-=money;
+  if(user.totalAmount<=0)
+    user.totalAmount=0;
+  await user.save();
+  res.status(200).json({message:"Successful"})
+})
 // Protected route
-app.get('/user/profile', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ message: 'Not logged in' });
-  }
-  res.json({ user: req.user });
+app.get('/user/profile', async(req, res) => {
+  const {username}= req.query;
+  const user= await User.findOne({username})
+  res.json({ user});
 });
 
-app.use('/goals',goalRoutes)
-
-app.use('/stocks',stockRoutes)
+app.use('/goals', goalRoutes);
+app.use('/stocks', stockRoutes);
 
 app.listen(3000, () => console.log('Server running at http://localhost:3000'));

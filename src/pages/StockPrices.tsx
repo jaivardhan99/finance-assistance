@@ -71,8 +71,6 @@ const stockData = [
   }
 ];
 
-
-
 interface Stock {
   symbol: string;
   initialPrice: number;
@@ -82,26 +80,50 @@ interface Stock {
   data: { price: number }[];
 }
 
+interface PortfolioStock extends Stock {
+  quantity: number;
+  purchasePrice: number;
+  purchaseDate?: string;
+}
+
 const StockPrices: FC = () => {
   const username = useSelector((state: any) => state.auth?.user?.username);
-  const [userStocks, setUserStocks] = useState<Stock[]>([]);
+  const [userStocks, setUserStocks] = useState<PortfolioStock[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedStock, setSelectedStock] = useState("");
+  const [quantity, setQuantity] = useState<number>(0);
+  const [purchasePrice, setPurchasePrice] = useState<number>(0);
+  const [purchaseDate, setPurchaseDate] = useState<string>(
+    new Date().toISOString().split('T')[0]
+  );
+  const [flashMessage, setFlashMessage] = useState<Boolean | false>(false);
+
 
   useEffect(() => {
     const fetchStocks = async () => {
       if (!username) return;
       try {
-        const res = await axios.get(`http://localhost:3000/stocks/getStocks/${username}`);
-        const symbols: string[] = res.data.stocks;
+        const res = await axios.get(`http://localhost:3000/stocks/getPortfolio/${username}`,{
+          withCredentials: true
+        });
+        const portfolioStocks = res.data.portfolio;
 
-        const matchedStocks = symbols
-          .map((symbol) => stockData.find((stock) => stock.symbol === symbol))
-          .filter((stock): stock is Stock => !!stock);
+        // Map the portfolio data with the stock market data
+        const enrichedStocks = portfolioStocks.map((portfolioItem: any) => {
+          const marketData = stockData.find(stock => stock.symbol === portfolioItem.symbol);
+          if (!marketData) return null;
+          
+          return {
+            ...marketData,
+            quantity: portfolioItem.quantity,
+            purchasePrice: portfolioItem.purchasePrice,
+            purchaseDate: portfolioItem.purchaseDate
+          };
+        }).filter(Boolean);
 
-        setUserStocks(matchedStocks);
+        setUserStocks(enrichedStocks);
       } catch (error) {
-        console.error("Failed to fetch stocks:", error);
+        console.error("Failed to fetch portfolio:", error);
       }
     };
 
@@ -114,29 +136,101 @@ const StockPrices: FC = () => {
 
   const handleAddStock = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedStock) return;
+    console.log(e)
+    if (!selectedStock || quantity <= 0 || purchasePrice <= 0) return;
 
     try {
-      await axios.post("http://localhost:3000/stocks/addStock", {
+      const respo=await axios.post("http://localhost:3000/stocks/addToPortfolio", {
         username,
-        stock: selectedStock
+        stock: selectedStock,
+        quantity,
+        purchasePrice,
+        purchaseDate
       });
+      if (respo.data.message === "Unsuccessful") {
+        console.log("Kitty")
+        setFlashMessage(true);
+      }
       setShowModal(false);
-      setSelectedStock("");
+      resetForm();
+      
       // Refetch user stocks
-      const res = await axios.get(`http://localhost:3000/stocks/getStocks/${username}`);
-      const symbols: string[] = res.data.stocks;
-      const matchedStocks = symbols
-        .map((symbol) => stockData.find((stock) => stock.symbol === symbol))
-        .filter((stock): stock is Stock => !!stock);
-      setUserStocks(matchedStocks);
-    } catch (error) {
-      console.error("Error adding stock:", error);
+      const res = await axios.get(`http://localhost:3000/stocks/getPortfolio/${username}`);
+      console.log(res.data);
+      const portfolioStocks = res.data.portfolio;
+      
+      // Map the portfolio data with the stock market data
+      const enrichedStocks = portfolioStocks.map((portfolioItem: any) => {
+        const marketData = stockData.find(stock => stock.symbol === portfolioItem.symbol);
+        if (!marketData) return null;
+        
+        return {
+          ...marketData,
+          quantity: portfolioItem.quantity,
+          purchasePrice: portfolioItem.purchasePrice,
+          purchaseDate: portfolioItem.purchaseDate
+        };
+      }).filter(Boolean);
+
+      setUserStocks(enrichedStocks);
+      }
+     catch (error) {
+      console.error("Error adding stock to portfolio:", error);
     }
   };
 
+  const resetForm = () => {
+    setSelectedStock("");
+    setQuantity(0);
+    setPurchasePrice(0);
+    setPurchaseDate(new Date().toISOString().split('T')[0]);
+  };
+
+  // When a stock is selected, pre-fill the purchase price with current market price
+  const handleStockSelection = (symbol: string) => {
+    setSelectedStock(symbol);
+    if (symbol) {
+      const selectedStockData = stockData.find(stock => stock.symbol === symbol);
+      if (selectedStockData) {
+        setPurchasePrice(selectedStockData.initialPrice);
+      }
+    }
+  };
+
+  const calculateTotalValue = () => {
+    return userStocks.reduce((sum, stock) => {
+      return sum + (stock.initialPrice * stock.quantity);
+    }, 0);
+  };
+
+  const calculateTotalInvestment = () => {
+    return userStocks.reduce((sum, stock) => {
+      return sum + (stock.purchasePrice * stock.quantity);
+    }, 0);
+  };
+
+  const totalValue = calculateTotalValue();
+  const totalInvestment = calculateTotalInvestment();
+  const totalProfit = totalValue - totalInvestment;
+  const profitPercentage = totalInvestment > 0 ? (totalProfit / totalInvestment) * 100 : 0;
+
   return (
+    
     <div className="p-4">
+       {flashMessage && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
+      <h2 className="text-xl font-semibold mb-4">Alert</h2>
+      <p className="mb-6">"NO enough money</p>
+      <button
+        onClick={() => setFlashMessage(false)}
+        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold mb-4">📈 Live Stock Prices</h1>
         <button
@@ -144,43 +238,131 @@ const StockPrices: FC = () => {
           className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
         >
           <PlusCircle className="h-5 w-5 mr-2" />
-          Add Stock
+          Buy Stock
         </button>
       </div>
 
       {username && <p className="text-sm text-gray-600 mb-4">Welcome, {username} 👋</p>}
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">Your Stocks</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-        {userStocks.map((stock) => (
-          <StockCard key={stock.symbol} {...stock} />
-        ))}
-      </div>
+      {userStocks.length > 0 && (
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          <h2 className="text-xl font-semibold mb-4">Portfolio Summary</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="p-4 bg-gray-50 rounded-lg">
+              <p className="text-sm text-gray-500">Current Value</p>
+              <p className="text-2xl font-bold">₹{totalValue.toFixed(2)}</p>
+            </div>
+            <div className="p-4 bg-gray-50 rounded-lg">
+              <p className="text-sm text-gray-500">Total Investment</p>
+              <p className="text-2xl font-bold">₹{totalInvestment.toFixed(2)}</p>
+            </div>
+            <div className="p-4 bg-gray-50 rounded-lg">
+              <p className="text-sm text-gray-500">Total Profit/Loss</p>
+              <p className={`text-2xl font-bold {totalProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+              ₹{totalProfit.toFixed(2)}
+              </p>
+            </div>
+            <div className="p-4 bg-gray-50 rounded-lg">
+              <p className="text-sm text-gray-500">Return</p>
+              <p className={`text-2xl font-bold ${profitPercentage >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                {profitPercentage.toFixed(2)}%
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <h2 className="text-xl font-semibold mt-6 mb-2">Your Portfolio</h2>
+      {userStocks.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+          {userStocks.map((stock) => (
+            <StockCard 
+              key={stock.symbol} 
+              {...stock} 
+              isPortfolio={true} 
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="text-gray-500 italic">You don't have any stocks in your portfolio yet.</p>
+      )}
 
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-md">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">Add a Stock</h2>
+              <h2 className="text-xl font-semibold">Buy Stock</h2>
               <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-gray-500">
                 <X className="h-6 w-6" />
               </button>
             </div>
             <form onSubmit={handleAddStock}>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Select Stock</label>
-              <select
-                value={selectedStock}
-                onChange={(e) => setSelectedStock(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md"
-              >
-                <option value="">-- Select a stock --</option>
-                {otherStocks.map((stock) => (
-                  <option key={stock.symbol} value={stock.symbol}>
-                    {stock.symbol}
-                  </option>
-                ))}
-              </select>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Select Stock</label>
+                <select
+                  value={selectedStock}
+                  onChange={(e) => handleStockSelection(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                >
+                  <option value="">-- Select a stock --</option>
+                  {stockData.map((stock) => (
+                    <option key={stock.symbol} value={stock.symbol}>
+                      {stock.symbol} - ${stock.initialPrice.toFixed(2)}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+                <input
+                  type="number"
+                  min="1"
+                  value={quantity || ''}
+                  onChange={(e) => setQuantity(parseFloat(e.target.value) || 0)}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Purchase Price (per share)</label>
+                <input
+                  type="number"
+                  step="0.01"
+                  min="0.01"
+                  value={purchasePrice || ''}
+                  onChange={(e) => setPurchasePrice(parseFloat(e.target.value) || 0)}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                />
+              </div>
+             
+
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Purchase Date</label>
+                <input
+                  type="date"
+                  value={purchaseDate}
+                  onChange={(e) => setPurchaseDate(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+
+              {selectedStock && quantity > 0 && purchasePrice > 0 && (
+                <div className="mb-6 p-3 bg-gray-50 rounded-md">
+                  <p className="text-sm font-medium">Order Summary</p>
+                  <p className="text-sm">
+                    {quantity} shares of {selectedStock} @ ${purchasePrice.toFixed(2)}
+                  </p>
+                  <p className="text-sm font-semibold">
+                    Total: ${(quantity * purchasePrice).toFixed(2)}
+                  </p>
+                </div>
+              )}
 
               <div className="mt-6 flex justify-end gap-3">
                 <button
@@ -193,8 +375,9 @@ const StockPrices: FC = () => {
                 <button
                   type="submit"
                   className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700"
+                  disabled={!selectedStock || quantity <= 0 || purchasePrice <= 0}
                 >
-                  Add Stock
+                  Buy Now
                 </button>
               </div>
             </form>
