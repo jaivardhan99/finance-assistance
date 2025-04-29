@@ -40,6 +40,10 @@ const portfolioItemSchema = new Schema({
 
 // Updated User schema
 const UserSchema = new Schema({
+  totalAmount:{
+    type:Number,
+    default:0
+  },
   email: {
     type: String,
     required: true,

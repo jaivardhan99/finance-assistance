@@ -96,6 +96,8 @@ const StockPrices: FC = () => {
   const [purchaseDate, setPurchaseDate] = useState<string>(
     new Date().toISOString().split('T')[0]
   );
+  const [flashMessage, setFlashMessage] = useState<Boolean | false>(false);
+
 
   useEffect(() => {
     const fetchStocks = async () => {
@@ -134,24 +136,29 @@ const StockPrices: FC = () => {
 
   const handleAddStock = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(e)
     if (!selectedStock || quantity <= 0 || purchasePrice <= 0) return;
 
     try {
-      await axios.post("http://localhost:3000/stocks/addToPortfolio", {
+      const respo=await axios.post("http://localhost:3000/stocks/addToPortfolio", {
         username,
         stock: selectedStock,
         quantity,
         purchasePrice,
         purchaseDate
       });
-      
+      if (respo.data.message === "Unsuccessful") {
+        console.log("Kitty")
+        setFlashMessage(true);
+      }
       setShowModal(false);
       resetForm();
       
       // Refetch user stocks
       const res = await axios.get(`http://localhost:3000/stocks/getPortfolio/${username}`);
+      console.log(res.data);
       const portfolioStocks = res.data.portfolio;
-
+      
       // Map the portfolio data with the stock market data
       const enrichedStocks = portfolioStocks.map((portfolioItem: any) => {
         const marketData = stockData.find(stock => stock.symbol === portfolioItem.symbol);
@@ -166,7 +173,8 @@ const StockPrices: FC = () => {
       }).filter(Boolean);
 
       setUserStocks(enrichedStocks);
-    } catch (error) {
+      }
+     catch (error) {
       console.error("Error adding stock to portfolio:", error);
     }
   };
@@ -207,7 +215,22 @@ const StockPrices: FC = () => {
   const profitPercentage = totalInvestment > 0 ? (totalProfit / totalInvestment) * 100 : 0;
 
   return (
+    
     <div className="p-4">
+       {flashMessage && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
+      <h2 className="text-xl font-semibold mb-4">Alert</h2>
+      <p className="mb-6">"NO enough money</p>
+      <button
+        onClick={() => setFlashMessage(false)}
+        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold mb-4">📈 Live Stock Prices</h1>
         <button
@@ -316,6 +339,8 @@ const StockPrices: FC = () => {
                   required
                 />
               </div>
+             
+
 
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Purchase Date</label>

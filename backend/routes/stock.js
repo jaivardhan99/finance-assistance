@@ -103,7 +103,7 @@ router.get('/getStocks/:username',async(req,res)=>{
     console.log(username);
     try{
     const user= await User.findOne({username});
-    res.status(200).json({stocks:user.stocks});
+    res.status(200).json({stocks:user.stocks,totalAmount:user.totalAmount});
     }catch(err){
         console.log(err);
         res.status(400).json({message:"Error"});
@@ -150,7 +150,6 @@ router.get('/getPortfolio/:username', async (req, res) => {
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
-      
       // Return portfolio data
       res.json({ portfolio: user.portfolio || [] });
     } catch (error) {
@@ -163,7 +162,7 @@ router.get('/getPortfolio/:username', async (req, res) => {
   router.post('/addToPortfolio', async (req, res) => {
     try {
       const { username, stock, quantity, purchasePrice, purchaseDate } = req.body;
-      
+      console.log(req.body);
       // Validate inputs
       if (!username || !stock || !quantity || !purchasePrice) {
         return res.status(400).json({ message: 'Missing required fields' });
@@ -174,7 +173,11 @@ router.get('/getPortfolio/:username', async (req, res) => {
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
-      
+      if(user.totalAmount<(quantity*purchasePrice)){
+        console.log("Kitty")
+        return res.status(200).json({message:"Unsuccessful"})
+      }
+        
       // Check if user already has this stock in portfolio
       const existingStockIndex = user.portfolio ? 
         user.portfolio.findIndex(item => item.symbol === stock) : -1;
@@ -189,12 +192,14 @@ router.get('/getPortfolio/:username', async (req, res) => {
         // Calculate new average purchase price
         const newAvgPrice = totalCost / totalShares;
         
+        
         user.portfolio[existingStockIndex] = {
           ...existingPosition,
           quantity: totalShares,
           purchasePrice: newAvgPrice,
           lastUpdated: new Date()
         };
+      
       } else {
         // Add new position
         if (!user.portfolio) user.portfolio = [];
@@ -206,8 +211,9 @@ router.get('/getPortfolio/:username', async (req, res) => {
           purchaseDate: purchaseDate || new Date(),
           lastUpdated: new Date()
         });
+
       }
-      
+      user.totalAmount-=(quantity*purchasePrice)
       await user.save();
       
       res.status(201).json({ message: 'Stock added to portfolio', portfolio: user.portfolio });

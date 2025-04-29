@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import TotalAmountCard from './TotalAmountCard'
 
 // Import the same stockData used in StockPrices component
 const stockData = [
@@ -336,6 +337,7 @@ export default function Dashboard() {
         </motion.div>
         
         {/* Monthly Returns Card */}
+
         <motion.div
           whileHover={{ scale: 1.03 }}
           transition={{ type: "spring", stiffness: 300 }}
@@ -371,7 +373,8 @@ export default function Dashboard() {
           </div>
         </motion.div>
       </div>
-
+      
+       <TotalAmountCard/>
       {/* AI Insights Section */}
       <motion.div
         whileHover={{ scale: 1.01 }}

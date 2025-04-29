@@ -6,6 +6,7 @@ const cors = require('cors');
 const User = require('./schemas/user');
 const goalRoutes = require('./routes/goal');
 const stockRoutes = require('./routes/stock');
+const user = require('./schemas/user');
 
 mongoose.connect('mongodb+srv://himanadhkondabathini:1234@cluster0.y77ij.mongodb.net/finance?retryWrites=true&w=majority');
 const app = express();
@@ -81,12 +82,30 @@ app.post('/user/logout', (req, res) => {
   });
 });
 
+app.post('/user/amount/add',async(req,res)=>{
+  const {username,money}= req.body;
+  const user= await User.findOne({username});
+  user.totalAmount+=money;
+  if(user.totalAmount<=0)
+    user.totalAmount=0;
+  await user.save();
+  res.status(200).json({message:"Successful"})
+})
+
+app.post('/user/amount/remove',async(req,res)=>{
+  const {username,money}= req.body;
+  const user= await User.findOne({username});
+  user.totalAmount-=money;
+  if(user.totalAmount<=0)
+    user.totalAmount=0;
+  await user.save();
+  res.status(200).json({message:"Successful"})
+})
 // Protected route
-app.get('/user/profile', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ message: 'Not logged in' });
-  }
-  res.json({ user: req.user });
+app.get('/user/profile', async(req, res) => {
+  const {username}= req.query;
+  const user= await User.findOne({username})
+  res.json({ user});
 });
 
 app.use('/goals', goalRoutes);
