@@ -1,0 +1,178 @@
+# data/stories.yml
+version: "3.1"
+
+stories:
+- story: budgeting tips
+  steps:
+  - intent: budgeting_tips
+  - action: utter_budgeting_tips
+
+- story: saving strategies
+  steps:
+  - intent: saving_strategies
+  - action: utter_saving_strategies
+
+- story: expense tracking
+  steps:
+  - intent: expense_tracking
+  - action: utter_expense_tracking
+
+- story: credit card management
+  steps:
+  - intent: credit_card_management
+  - action: utter_credit_card_management
+
+- story: loans and interest
+  steps:
+  - intent: loans_and_interest
+  - action: utter_loans_and_interest
+
+- story: investment basics
+  steps:
+  - intent: investment_basics
+  - action: utter_investment_basics
+
+- story: tax planning
+  steps:
+  - intent: tax_planning
+  - action: utter_tax_planning
+
+- story: salary management
+  steps:
+  - intent: salary_and_income_management
+  - action: utter_salary_and_income_management
+
+- story: EMI calculation
+  steps:
+  - intent: emi_and_debt_calculation
+  - action: utter_emi_and_debt_calculation
+
+- story: smart spending
+  steps:
+  - intent: smart_spending_habits
+  - action: utter_smart_spending_habits
+
+- story: health insurance
+  steps:
+  - intent: health_insurance_guidance
+  - action: utter_health_insurance_guidance
+
+- story: retirement planning
+  steps:
+  - intent: retirement_planning
+  - action: utter_retirement_planning
+
+- story: education loans
+  steps:
+  - intent: education_loans
+  - action: utter_education_loans
+
+- story: vehicle loans
+  steps:
+  - intent: vehicle_loans
+  - action: utter_vehicle_loans
+
+- story: monthly budget
+  steps:
+  - intent: monthly_budget_planning
+  - action: utter_monthly_budget_planning
+
+- story: emergency fund
+  steps:
+  - intent: emergency_fund_creation
+  - action: utter_emergency_fund_creation
+
+- story: credit score
+  steps:
+  - intent: understanding_credit_score
+  - action: utter_understanding_credit_score
+
+- story: mutual funds
+  steps:
+  - intent: mutual_funds
+  - action: utter_mutual_funds
+
+- story: fixed deposits
+  steps:
+  - intent: fixed_deposits
+  - action: utter_fixed_deposits
+
+- story: inflation impact
+  steps:
+  - intent: inflation_and_purchasing_power
+  - action: utter_inflation_and_purchasing_power
+
+- story: home buying
+  steps:
+  - intent: home_buying_finances
+  - action: utter_home_buying_finances
+
+- story: balance transfers
+  steps:
+  - intent: balance_transfers
+  - action: utter_balance_transfers
+
+- story: debt traps
+  steps:
+  - intent: debt_traps
+  - action: utter_debt_traps
+
+- story: security tips
+  steps:
+  - intent: financial_security_tips
+  - action: utter_financial_security_tips
+
+- story: freelance finances
+  steps:
+  - intent: freelance_and_gig_economy_finance
+  - action: utter_freelance_and_gig_economy_finance
+
+- story: using apps
+  steps:
+  - intent: finance_apps_usage
+  - action: utter_finance_apps_usage
+
+- story: linking account
+  steps:
+  - intent: bank_account_linking
+  - action: utter_bank_account_linking
+
+- story: paying bills
+  steps:
+  - intent: paying_utility_bills
+  - action: utter_paying_utility_bills
+
+- story: crypto basics
+  steps:
+  - intent: cryptocurrency_basics
+  - action: utter_cryptocurrency_basics
+
+- story: goal setting
+  steps:
+  - intent: setting_financial_goals
+  - action: utter_setting_financial_goals
+
+- story: money transfers
+  steps:
+  - intent: international_money_transfers
+  - action: utter_international_money_transfers
+
+- story: bank fees
+  steps:
+  - intent: bank_charges
+  - action: utter_bank_charges
+
+- story: tax filing
+  steps:
+  - intent: filing_tax_returns
+  - action: utter_filing_tax_returns
+
+- story: payment safety
+  steps:
+  - intent: upi_and_online_payment_safety
+  - action: utter_upi_and_online_payment_safety
+
+- story: annual expenses
+  steps:
+  - intent: planning_for_annual_expenses
+  - action: utter_planning_for_annual_expenses

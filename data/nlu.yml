@@ -1,0 +1,1402 @@
+version: '3.1'
+nlu:
+- intent: budgeting_tips
+  examples: '- How can I budgeting tips?
+
+    - What are some tips for budgeting tips?
+
+    - Can you help me with budgeting tips?
+
+    - Give me advice on budgeting tips.
+
+    - How do I budgeting tips effectively?
+
+    - Best practices for budgeting tips?
+
+    - I need help with budgeting tips.
+
+    - Suggestions for budgeting tips?
+
+    - Budgeting tips example 1
+
+    - Budgeting tips example 2
+
+    - Budgeting tips example 3
+
+    - Budgeting tips example 4
+
+    - Budgeting tips example 5
+
+    - Budgeting tips example 6
+
+    - Budgeting tips example 7
+
+    - Budgeting tips example 8
+
+    - Budgeting tips example 9
+
+    - Budgeting tips example 10
+
+    - Budgeting tips example 11
+
+    - Budgeting tips example 12'
+- intent: saving_strategies
+  examples: '- How can I saving strategies?
+
+    - What are some tips for saving strategies?
+
+    - Can you help me with saving strategies?
+
+    - Give me advice on saving strategies.
+
+    - How do I saving strategies effectively?
+
+    - Best practices for saving strategies?
+
+    - I need help with saving strategies.
+
+    - Suggestions for saving strategies?
+
+    - Saving strategies example 1
+
+    - Saving strategies example 2
+
+    - Saving strategies example 3
+
+    - Saving strategies example 4
+
+    - Saving strategies example 5
+
+    - Saving strategies example 6
+
+    - Saving strategies example 7
+
+    - Saving strategies example 8
+
+    - Saving strategies example 9
+
+    - Saving strategies example 10
+
+    - Saving strategies example 11
+
+    - Saving strategies example 12'
+- intent: expense_tracking
+  examples: '- How can I expense tracking?
+
+    - What are some tips for expense tracking?
+
+    - Can you help me with expense tracking?
+
+    - Give me advice on expense tracking.
+
+    - How do I expense tracking effectively?
+
+    - Best practices for expense tracking?
+
+    - I need help with expense tracking.
+
+    - Suggestions for expense tracking?
+
+    - Expense tracking example 1
+
+    - Expense tracking example 2
+
+    - Expense tracking example 3
+
+    - Expense tracking example 4
+
+    - Expense tracking example 5
+
+    - Expense tracking example 6
+
+    - Expense tracking example 7
+
+    - Expense tracking example 8
+
+    - Expense tracking example 9
+
+    - Expense tracking example 10
+
+    - Expense tracking example 11
+
+    - Expense tracking example 12'
+- intent: credit_card_management
+  examples: '- How can I credit card management?
+
+    - What are some tips for credit card management?
+
+    - Can you help me with credit card management?
+
+    - Give me advice on credit card management.
+
+    - How do I credit card management effectively?
+
+    - Best practices for credit card management?
+
+    - I need help with credit card management.
+
+    - Suggestions for credit card management?
+
+    - Credit card management example 1
+
+    - Credit card management example 2
+
+    - Credit card management example 3
+
+    - Credit card management example 4
+
+    - Credit card management example 5
+
+    - Credit card management example 6
+
+    - Credit card management example 7
+
+    - Credit card management example 8
+
+    - Credit card management example 9
+
+    - Credit card management example 10
+
+    - Credit card management example 11
+
+    - Credit card management example 12'
+- intent: loans_and_interest
+  examples: '- How can I loans and interest?
+
+    - What are some tips for loans and interest?
+
+    - Can you help me with loans and interest?
+
+    - Give me advice on loans and interest.
+
+    - How do I loans and interest effectively?
+
+    - Best practices for loans and interest?
+
+    - I need help with loans and interest.
+
+    - Suggestions for loans and interest?
+
+    - Loans and interest example 1
+
+    - Loans and interest example 2
+
+    - Loans and interest example 3
+
+    - Loans and interest example 4
+
+    - Loans and interest example 5
+
+    - Loans and interest example 6
+
+    - Loans and interest example 7
+
+    - Loans and interest example 8
+
+    - Loans and interest example 9
+
+    - Loans and interest example 10
+
+    - Loans and interest example 11
+
+    - Loans and interest example 12'
+- intent: investment_basics
+  examples: '- How can I investment basics?
+
+    - What are some tips for investment basics?
+
+    - Can you help me with investment basics?
+
+    - Give me advice on investment basics.
+
+    - How do I investment basics effectively?
+
+    - Best practices for investment basics?
+
+    - I need help with investment basics.
+
+    - Suggestions for investment basics?
+
+    - Investment basics example 1
+
+    - Investment basics example 2
+
+    - Investment basics example 3
+
+    - Investment basics example 4
+
+    - Investment basics example 5
+
+    - Investment basics example 6
+
+    - Investment basics example 7
+
+    - Investment basics example 8
+
+    - Investment basics example 9
+
+    - Investment basics example 10
+
+    - Investment basics example 11
+
+    - Investment basics example 12'
+- intent: tax_planning
+  examples: '- How can I tax planning?
+
+    - What are some tips for tax planning?
+
+    - Can you help me with tax planning?
+
+    - Give me advice on tax planning.
+
+    - How do I tax planning effectively?
+
+    - Best practices for tax planning?
+
+    - I need help with tax planning.
+
+    - Suggestions for tax planning?
+
+    - Tax planning example 1
+
+    - Tax planning example 2
+
+    - Tax planning example 3
+
+    - Tax planning example 4
+
+    - Tax planning example 5
+
+    - Tax planning example 6
+
+    - Tax planning example 7
+
+    - Tax planning example 8
+
+    - Tax planning example 9
+
+    - Tax planning example 10
+
+    - Tax planning example 11
+
+    - Tax planning example 12'
+- intent: salary_and_income_management
+  examples: '- How can I salary and income management?
+
+    - What are some tips for salary and income management?
+
+    - Can you help me with salary and income management?
+
+    - Give me advice on salary and income management.
+
+    - How do I salary and income management effectively?
+
+    - Best practices for salary and income management?
+
+    - I need help with salary and income management.
+
+    - Suggestions for salary and income management?
+
+    - Salary and income management example 1
+
+    - Salary and income management example 2
+
+    - Salary and income management example 3
+
+    - Salary and income management example 4
+
+    - Salary and income management example 5
+
+    - Salary and income management example 6
+
+    - Salary and income management example 7
+
+    - Salary and income management example 8
+
+    - Salary and income management example 9
+
+    - Salary and income management example 10
+
+    - Salary and income management example 11
+
+    - Salary and income management example 12'
+- intent: emi_and_debt_calculation
+  examples: '- How can I emi and debt calculation?
+
+    - What are some tips for emi and debt calculation?
+
+    - Can you help me with emi and debt calculation?
+
+    - Give me advice on emi and debt calculation.
+
+    - How do I emi and debt calculation effectively?
+
+    - Best practices for emi and debt calculation?
+
+    - I need help with emi and debt calculation.
+
+    - Suggestions for emi and debt calculation?
+
+    - Emi and debt calculation example 1
+
+    - Emi and debt calculation example 2
+
+    - Emi and debt calculation example 3
+
+    - Emi and debt calculation example 4
+
+    - Emi and debt calculation example 5
+
+    - Emi and debt calculation example 6
+
+    - Emi and debt calculation example 7
+
+    - Emi and debt calculation example 8
+
+    - Emi and debt calculation example 9
+
+    - Emi and debt calculation example 10
+
+    - Emi and debt calculation example 11
+
+    - Emi and debt calculation example 12'
+- intent: smart_spending_habits
+  examples: '- How can I smart spending habits?
+
+    - What are some tips for smart spending habits?
+
+    - Can you help me with smart spending habits?
+
+    - Give me advice on smart spending habits.
+
+    - How do I smart spending habits effectively?
+
+    - Best practices for smart spending habits?
+
+    - I need help with smart spending habits.
+
+    - Suggestions for smart spending habits?
+
+    - Smart spending habits example 1
+
+    - Smart spending habits example 2
+
+    - Smart spending habits example 3
+
+    - Smart spending habits example 4
+
+    - Smart spending habits example 5
+
+    - Smart spending habits example 6
+
+    - Smart spending habits example 7
+
+    - Smart spending habits example 8
+
+    - Smart spending habits example 9
+
+    - Smart spending habits example 10
+
+    - Smart spending habits example 11
+
+    - Smart spending habits example 12'
+- intent: health_insurance_guidance
+  examples: '- How can I health insurance guidance?
+
+    - What are some tips for health insurance guidance?
+
+    - Can you help me with health insurance guidance?
+
+    - Give me advice on health insurance guidance.
+
+    - How do I health insurance guidance effectively?
+
+    - Best practices for health insurance guidance?
+
+    - I need help with health insurance guidance.
+
+    - Suggestions for health insurance guidance?
+
+    - Health insurance guidance example 1
+
+    - Health insurance guidance example 2
+
+    - Health insurance guidance example 3
+
+    - Health insurance guidance example 4
+
+    - Health insurance guidance example 5
+
+    - Health insurance guidance example 6
+
+    - Health insurance guidance example 7
+
+    - Health insurance guidance example 8
+
+    - Health insurance guidance example 9
+
+    - Health insurance guidance example 10
+
+    - Health insurance guidance example 11
+
+    - Health insurance guidance example 12'
+- intent: retirement_planning
+  examples: '- How can I retirement planning?
+
+    - What are some tips for retirement planning?
+
+    - Can you help me with retirement planning?
+
+    - Give me advice on retirement planning.
+
+    - How do I retirement planning effectively?
+
+    - Best practices for retirement planning?
+
+    - I need help with retirement planning.
+
+    - Suggestions for retirement planning?
+
+    - Retirement planning example 1
+
+    - Retirement planning example 2
+
+    - Retirement planning example 3
+
+    - Retirement planning example 4
+
+    - Retirement planning example 5
+
+    - Retirement planning example 6
+
+    - Retirement planning example 7
+
+    - Retirement planning example 8
+
+    - Retirement planning example 9
+
+    - Retirement planning example 10
+
+    - Retirement planning example 11
+
+    - Retirement planning example 12'
+- intent: education_loans
+  examples: '- How can I education loans?
+
+    - What are some tips for education loans?
+
+    - Can you help me with education loans?
+
+    - Give me advice on education loans.
+
+    - How do I education loans effectively?
+
+    - Best practices for education loans?
+
+    - I need help with education loans.
+
+    - Suggestions for education loans?
+
+    - Education loans example 1
+
+    - Education loans example 2
+
+    - Education loans example 3
+
+    - Education loans example 4
+
+    - Education loans example 5
+
+    - Education loans example 6
+
+    - Education loans example 7
+
+    - Education loans example 8
+
+    - Education loans example 9
+
+    - Education loans example 10
+
+    - Education loans example 11
+
+    - Education loans example 12'
+- intent: vehicle_loans
+  examples: '- How can I vehicle loans?
+
+    - What are some tips for vehicle loans?
+
+    - Can you help me with vehicle loans?
+
+    - Give me advice on vehicle loans.
+
+    - How do I vehicle loans effectively?
+
+    - Best practices for vehicle loans?
+
+    - I need help with vehicle loans.
+
+    - Suggestions for vehicle loans?
+
+    - Vehicle loans example 1
+
+    - Vehicle loans example 2
+
+    - Vehicle loans example 3
+
+    - Vehicle loans example 4
+
+    - Vehicle loans example 5
+
+    - Vehicle loans example 6
+
+    - Vehicle loans example 7
+
+    - Vehicle loans example 8
+
+    - Vehicle loans example 9
+
+    - Vehicle loans example 10
+
+    - Vehicle loans example 11
+
+    - Vehicle loans example 12'
+- intent: monthly_budget_planning
+  examples: '- How can I monthly budget planning?
+
+    - What are some tips for monthly budget planning?
+
+    - Can you help me with monthly budget planning?
+
+    - Give me advice on monthly budget planning.
+
+    - How do I monthly budget planning effectively?
+
+    - Best practices for monthly budget planning?
+
+    - I need help with monthly budget planning.
+
+    - Suggestions for monthly budget planning?
+
+    - Monthly budget planning example 1
+
+    - Monthly budget planning example 2
+
+    - Monthly budget planning example 3
+
+    - Monthly budget planning example 4
+
+    - Monthly budget planning example 5
+
+    - Monthly budget planning example 6
+
+    - Monthly budget planning example 7
+
+    - Monthly budget planning example 8
+
+    - Monthly budget planning example 9
+
+    - Monthly budget planning example 10
+
+    - Monthly budget planning example 11
+
+    - Monthly budget planning example 12'
+- intent: emergency_fund_creation
+  examples: '- How can I emergency fund creation?
+
+    - What are some tips for emergency fund creation?
+
+    - Can you help me with emergency fund creation?
+
+    - Give me advice on emergency fund creation.
+
+    - How do I emergency fund creation effectively?
+
+    - Best practices for emergency fund creation?
+
+    - I need help with emergency fund creation.
+
+    - Suggestions for emergency fund creation?
+
+    - Emergency fund creation example 1
+
+    - Emergency fund creation example 2
+
+    - Emergency fund creation example 3
+
+    - Emergency fund creation example 4
+
+    - Emergency fund creation example 5
+
+    - Emergency fund creation example 6
+
+    - Emergency fund creation example 7
+
+    - Emergency fund creation example 8
+
+    - Emergency fund creation example 9
+
+    - Emergency fund creation example 10
+
+    - Emergency fund creation example 11
+
+    - Emergency fund creation example 12'
+- intent: understanding_credit_score
+  examples: '- How can I understanding credit score?
+
+    - What are some tips for understanding credit score?
+
+    - Can you help me with understanding credit score?
+
+    - Give me advice on understanding credit score.
+
+    - How do I understanding credit score effectively?
+
+    - Best practices for understanding credit score?
+
+    - I need help with understanding credit score.
+
+    - Suggestions for understanding credit score?
+
+    - Understanding credit score example 1
+
+    - Understanding credit score example 2
+
+    - Understanding credit score example 3
+
+    - Understanding credit score example 4
+
+    - Understanding credit score example 5
+
+    - Understanding credit score example 6
+
+    - Understanding credit score example 7
+
+    - Understanding credit score example 8
+
+    - Understanding credit score example 9
+
+    - Understanding credit score example 10
+
+    - Understanding credit score example 11
+
+    - Understanding credit score example 12'
+- intent: mutual_funds
+  examples: '- How can I mutual funds?
+
+    - What are some tips for mutual funds?
+
+    - Can you help me with mutual funds?
+
+    - Give me advice on mutual funds.
+
+    - How do I mutual funds effectively?
+
+    - Best practices for mutual funds?
+
+    - I need help with mutual funds.
+
+    - Suggestions for mutual funds?
+
+    - Mutual funds example 1
+
+    - Mutual funds example 2
+
+    - Mutual funds example 3
+
+    - Mutual funds example 4
+
+    - Mutual funds example 5
+
+    - Mutual funds example 6
+
+    - Mutual funds example 7
+
+    - Mutual funds example 8
+
+    - Mutual funds example 9
+
+    - Mutual funds example 10
+
+    - Mutual funds example 11
+
+    - Mutual funds example 12'
+- intent: fixed_deposits
+  examples: '- How can I fixed deposits?
+
+    - What are some tips for fixed deposits?
+
+    - Can you help me with fixed deposits?
+
+    - Give me advice on fixed deposits.
+
+    - How do I fixed deposits effectively?
+
+    - Best practices for fixed deposits?
+
+    - I need help with fixed deposits.
+
+    - Suggestions for fixed deposits?
+
+    - Fixed deposits example 1
+
+    - Fixed deposits example 2
+
+    - Fixed deposits example 3
+
+    - Fixed deposits example 4
+
+    - Fixed deposits example 5
+
+    - Fixed deposits example 6
+
+    - Fixed deposits example 7
+
+    - Fixed deposits example 8
+
+    - Fixed deposits example 9
+
+    - Fixed deposits example 10
+
+    - Fixed deposits example 11
+
+    - Fixed deposits example 12'
+- intent: inflation_and_purchasing_power
+  examples: '- How can I inflation and purchasing power?
+
+    - What are some tips for inflation and purchasing power?
+
+    - Can you help me with inflation and purchasing power?
+
+    - Give me advice on inflation and purchasing power.
+
+    - How do I inflation and purchasing power effectively?
+
+    - Best practices for inflation and purchasing power?
+
+    - I need help with inflation and purchasing power.
+
+    - Suggestions for inflation and purchasing power?
+
+    - Inflation and purchasing power example 1
+
+    - Inflation and purchasing power example 2
+
+    - Inflation and purchasing power example 3
+
+    - Inflation and purchasing power example 4
+
+    - Inflation and purchasing power example 5
+
+    - Inflation and purchasing power example 6
+
+    - Inflation and purchasing power example 7
+
+    - Inflation and purchasing power example 8
+
+    - Inflation and purchasing power example 9
+
+    - Inflation and purchasing power example 10
+
+    - Inflation and purchasing power example 11
+
+    - Inflation and purchasing power example 12'
+- intent: home_buying_finances
+  examples: '- How can I home buying finances?
+
+    - What are some tips for home buying finances?
+
+    - Can you help me with home buying finances?
+
+    - Give me advice on home buying finances.
+
+    - How do I home buying finances effectively?
+
+    - Best practices for home buying finances?
+
+    - I need help with home buying finances.
+
+    - Suggestions for home buying finances?
+
+    - Home buying finances example 1
+
+    - Home buying finances example 2
+
+    - Home buying finances example 3
+
+    - Home buying finances example 4
+
+    - Home buying finances example 5
+
+    - Home buying finances example 6
+
+    - Home buying finances example 7
+
+    - Home buying finances example 8
+
+    - Home buying finances example 9
+
+    - Home buying finances example 10
+
+    - Home buying finances example 11
+
+    - Home buying finances example 12'
+- intent: balance_transfers
+  examples: '- How can I balance transfers?
+
+    - What are some tips for balance transfers?
+
+    - Can you help me with balance transfers?
+
+    - Give me advice on balance transfers.
+
+    - How do I balance transfers effectively?
+
+    - Best practices for balance transfers?
+
+    - I need help with balance transfers.
+
+    - Suggestions for balance transfers?
+
+    - Balance transfers example 1
+
+    - Balance transfers example 2
+
+    - Balance transfers example 3
+
+    - Balance transfers example 4
+
+    - Balance transfers example 5
+
+    - Balance transfers example 6
+
+    - Balance transfers example 7
+
+    - Balance transfers example 8
+
+    - Balance transfers example 9
+
+    - Balance transfers example 10
+
+    - Balance transfers example 11
+
+    - Balance transfers example 12'
+- intent: debt_traps
+  examples: '- How can I debt traps?
+
+    - What are some tips for debt traps?
+
+    - Can you help me with debt traps?
+
+    - Give me advice on debt traps.
+
+    - How do I debt traps effectively?
+
+    - Best practices for debt traps?
+
+    - I need help with debt traps.
+
+    - Suggestions for debt traps?
+
+    - Debt traps example 1
+
+    - Debt traps example 2
+
+    - Debt traps example 3
+
+    - Debt traps example 4
+
+    - Debt traps example 5
+
+    - Debt traps example 6
+
+    - Debt traps example 7
+
+    - Debt traps example 8
+
+    - Debt traps example 9
+
+    - Debt traps example 10
+
+    - Debt traps example 11
+
+    - Debt traps example 12'
+- intent: financial_security_tips
+  examples: '- How can I financial security tips?
+
+    - What are some tips for financial security tips?
+
+    - Can you help me with financial security tips?
+
+    - Give me advice on financial security tips.
+
+    - How do I financial security tips effectively?
+
+    - Best practices for financial security tips?
+
+    - I need help with financial security tips.
+
+    - Suggestions for financial security tips?
+
+    - Financial security tips example 1
+
+    - Financial security tips example 2
+
+    - Financial security tips example 3
+
+    - Financial security tips example 4
+
+    - Financial security tips example 5
+
+    - Financial security tips example 6
+
+    - Financial security tips example 7
+
+    - Financial security tips example 8
+
+    - Financial security tips example 9
+
+    - Financial security tips example 10
+
+    - Financial security tips example 11
+
+    - Financial security tips example 12'
+- intent: freelance_and_gig_economy_finance
+  examples: '- How can I freelance and gig economy finance?
+
+    - What are some tips for freelance and gig economy finance?
+
+    - Can you help me with freelance and gig economy finance?
+
+    - Give me advice on freelance and gig economy finance.
+
+    - How do I freelance and gig economy finance effectively?
+
+    - Best practices for freelance and gig economy finance?
+
+    - I need help with freelance and gig economy finance.
+
+    - Suggestions for freelance and gig economy finance?
+
+    - Freelance and gig economy finance example 1
+
+    - Freelance and gig economy finance example 2
+
+    - Freelance and gig economy finance example 3
+
+    - Freelance and gig economy finance example 4
+
+    - Freelance and gig economy finance example 5
+
+    - Freelance and gig economy finance example 6
+
+    - Freelance and gig economy finance example 7
+
+    - Freelance and gig economy finance example 8
+
+    - Freelance and gig economy finance example 9
+
+    - Freelance and gig economy finance example 10
+
+    - Freelance and gig economy finance example 11
+
+    - Freelance and gig economy finance example 12'
+- intent: finance_apps_usage
+  examples: '- How can I finance apps usage?
+
+    - What are some tips for finance apps usage?
+
+    - Can you help me with finance apps usage?
+
+    - Give me advice on finance apps usage.
+
+    - How do I finance apps usage effectively?
+
+    - Best practices for finance apps usage?
+
+    - I need help with finance apps usage.
+
+    - Suggestions for finance apps usage?
+
+    - Finance apps usage example 1
+
+    - Finance apps usage example 2
+
+    - Finance apps usage example 3
+
+    - Finance apps usage example 4
+
+    - Finance apps usage example 5
+
+    - Finance apps usage example 6
+
+    - Finance apps usage example 7
+
+    - Finance apps usage example 8
+
+    - Finance apps usage example 9
+
+    - Finance apps usage example 10
+
+    - Finance apps usage example 11
+
+    - Finance apps usage example 12'
+- intent: bank_account_linking
+  examples: '- How can I bank account linking?
+
+    - What are some tips for bank account linking?
+
+    - Can you help me with bank account linking?
+
+    - Give me advice on bank account linking.
+
+    - How do I bank account linking effectively?
+
+    - Best practices for bank account linking?
+
+    - I need help with bank account linking.
+
+    - Suggestions for bank account linking?
+
+    - Bank account linking example 1
+
+    - Bank account linking example 2
+
+    - Bank account linking example 3
+
+    - Bank account linking example 4
+
+    - Bank account linking example 5
+
+    - Bank account linking example 6
+
+    - Bank account linking example 7
+
+    - Bank account linking example 8
+
+    - Bank account linking example 9
+
+    - Bank account linking example 10
+
+    - Bank account linking example 11
+
+    - Bank account linking example 12'
+- intent: paying_utility_bills
+  examples: '- How can I paying utility bills?
+
+    - What are some tips for paying utility bills?
+
+    - Can you help me with paying utility bills?
+
+    - Give me advice on paying utility bills.
+
+    - How do I paying utility bills effectively?
+
+    - Best practices for paying utility bills?
+
+    - I need help with paying utility bills.
+
+    - Suggestions for paying utility bills?
+
+    - Paying utility bills example 1
+
+    - Paying utility bills example 2
+
+    - Paying utility bills example 3
+
+    - Paying utility bills example 4
+
+    - Paying utility bills example 5
+
+    - Paying utility bills example 6
+
+    - Paying utility bills example 7
+
+    - Paying utility bills example 8
+
+    - Paying utility bills example 9
+
+    - Paying utility bills example 10
+
+    - Paying utility bills example 11
+
+    - Paying utility bills example 12'
+- intent: cryptocurrency_basics
+  examples: '- How can I cryptocurrency basics?
+
+    - What are some tips for cryptocurrency basics?
+
+    - Can you help me with cryptocurrency basics?
+
+    - Give me advice on cryptocurrency basics.
+
+    - How do I cryptocurrency basics effectively?
+
+    - Best practices for cryptocurrency basics?
+
+    - I need help with cryptocurrency basics.
+
+    - Suggestions for cryptocurrency basics?
+
+    - Cryptocurrency basics example 1
+
+    - Cryptocurrency basics example 2
+
+    - Cryptocurrency basics example 3
+
+    - Cryptocurrency basics example 4
+
+    - Cryptocurrency basics example 5
+
+    - Cryptocurrency basics example 6
+
+    - Cryptocurrency basics example 7
+
+    - Cryptocurrency basics example 8
+
+    - Cryptocurrency basics example 9
+
+    - Cryptocurrency basics example 10
+
+    - Cryptocurrency basics example 11
+
+    - Cryptocurrency basics example 12'
+- intent: setting_financial_goals
+  examples: '- How can I setting financial goals?
+
+    - What are some tips for setting financial goals?
+
+    - Can you help me with setting financial goals?
+
+    - Give me advice on setting financial goals.
+
+    - How do I setting financial goals effectively?
+
+    - Best practices for setting financial goals?
+
+    - I need help with setting financial goals.
+
+    - Suggestions for setting financial goals?
+
+    - Setting financial goals example 1
+
+    - Setting financial goals example 2
+
+    - Setting financial goals example 3
+
+    - Setting financial goals example 4
+
+    - Setting financial goals example 5
+
+    - Setting financial goals example 6
+
+    - Setting financial goals example 7
+
+    - Setting financial goals example 8
+
+    - Setting financial goals example 9
+
+    - Setting financial goals example 10
+
+    - Setting financial goals example 11
+
+    - Setting financial goals example 12'
+- intent: international_money_transfers
+  examples: '- How can I international money transfers?
+
+    - What are some tips for international money transfers?
+
+    - Can you help me with international money transfers?
+
+    - Give me advice on international money transfers.
+
+    - How do I international money transfers effectively?
+
+    - Best practices for international money transfers?
+
+    - I need help with international money transfers.
+
+    - Suggestions for international money transfers?
+
+    - International money transfers example 1
+
+    - International money transfers example 2
+
+    - International money transfers example 3
+
+    - International money transfers example 4
+
+    - International money transfers example 5
+
+    - International money transfers example 6
+
+    - International money transfers example 7
+
+    - International money transfers example 8
+
+    - International money transfers example 9
+
+    - International money transfers example 10
+
+    - International money transfers example 11
+
+    - International money transfers example 12'
+- intent: bank_charges
+  examples: '- How can I bank charges?
+
+    - What are some tips for bank charges?
+
+    - Can you help me with bank charges?
+
+    - Give me advice on bank charges.
+
+    - How do I bank charges effectively?
+
+    - Best practices for bank charges?
+
+    - I need help with bank charges.
+
+    - Suggestions for bank charges?
+
+    - Bank charges example 1
+
+    - Bank charges example 2
+
+    - Bank charges example 3
+
+    - Bank charges example 4
+
+    - Bank charges example 5
+
+    - Bank charges example 6
+
+    - Bank charges example 7
+
+    - Bank charges example 8
+
+    - Bank charges example 9
+
+    - Bank charges example 10
+
+    - Bank charges example 11
+
+    - Bank charges example 12'
+- intent: filing_tax_returns
+  examples: '- How can I filing tax returns?
+
+    - What are some tips for filing tax returns?
+
+    - Can you help me with filing tax returns?
+
+    - Give me advice on filing tax returns.
+
+    - How do I filing tax returns effectively?
+
+    - Best practices for filing tax returns?
+
+    - I need help with filing tax returns.
+
+    - Suggestions for filing tax returns?
+
+    - Filing tax returns example 1
+
+    - Filing tax returns example 2
+
+    - Filing tax returns example 3
+
+    - Filing tax returns example 4
+
+    - Filing tax returns example 5
+
+    - Filing tax returns example 6
+
+    - Filing tax returns example 7
+
+    - Filing tax returns example 8
+
+    - Filing tax returns example 9
+
+    - Filing tax returns example 10
+
+    - Filing tax returns example 11
+
+    - Filing tax returns example 12'
+- intent: upi_and_online_payment_safety
+  examples: '- How can I upi and online payment safety?
+
+    - What are some tips for upi and online payment safety?
+
+    - Can you help me with upi and online payment safety?
+
+    - Give me advice on upi and online payment safety.
+
+    - How do I upi and online payment safety effectively?
+
+    - Best practices for upi and online payment safety?
+
+    - I need help with upi and online payment safety.
+
+    - Suggestions for upi and online payment safety?
+
+    - Upi and online payment safety example 1
+
+    - Upi and online payment safety example 2
+
+    - Upi and online payment safety example 3
+
+    - Upi and online payment safety example 4
+
+    - Upi and online payment safety example 5
+
+    - Upi and online payment safety example 6
+
+    - Upi and online payment safety example 7
+
+    - Upi and online payment safety example 8
+
+    - Upi and online payment safety example 9
+
+    - Upi and online payment safety example 10
+
+    - Upi and online payment safety example 11
+
+    - Upi and online payment safety example 12'
+- intent: planning_for_annual_expenses
+  examples: '- How can I planning for annual expenses?
+
+    - What are some tips for planning for annual expenses?
+
+    - Can you help me with planning for annual expenses?
+
+    - Give me advice on planning for annual expenses.
+
+    - How do I planning for annual expenses effectively?
+
+    - Best practices for planning for annual expenses?
+
+    - I need help with planning for annual expenses.
+
+    - Suggestions for planning for annual expenses?
+
+    - Planning for annual expenses example 1
+
+    - Planning for annual expenses example 2
+
+    - Planning for annual expenses example 3
+
+    - Planning for annual expenses example 4
+
+    - Planning for annual expenses example 5
+
+    - Planning for annual expenses example 6
+
+    - Planning for annual expenses example 7
+
+    - Planning for annual expenses example 8
+
+    - Planning for annual expenses example 9
+
+    - Planning for annual expenses example 10
+
+    - Planning for annual expenses example 11
+
+    - Planning for annual expenses example 12'

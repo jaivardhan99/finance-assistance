@@ -6,13 +6,21 @@ const cors = require('cors');
 const User = require('./schemas/user');
 const goalRoutes= require('./routes/goal');
 const stockRoutes= require('./routes/stock');
+const DB_URI = 'mongodb+srv://himanadhkondabathini:1234@cluster0.y77ij.mongodb.net/finance?retryWrites=true&w=majority&appName=Cluster0';
 
-mongoose.connect('mongodb+srv://himanadhkondabathini:1234@cluster0.y77ij.mongodb.net/finance?retryWrites=true&w=majority');
+mongoose.connect(DB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})  .then(() => console.log('✅ MongoDB connected'))
+.catch(err => console.error('❌ MongoDB connection error:', err.message));
+
+
+// mongoose.connect('mongodb+srv://himanadhkondabathini:1234@cluster0.y77ij.mongodb.net/finance?retryWrites=true&w=majority');
 const app = express();
 
 // Enable CORS
 app.use(cors({
-  origin: 'http://localhost:5174', // your frontend's URL
+  origin: 'http://localhost:5173', // your frontend's URL
   credentials: true, // allow cookies (needed for sessions)
 }));
 

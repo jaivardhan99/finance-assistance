@@ -1,0 +1,146 @@
+# domain.yml
+
+version: "3.1"
+
+intents:
+  - budgeting_tips
+  - saving_strategies
+  - expense_tracking
+  - credit_card_management
+  - loans_and_interest
+  - investment_basics
+  - tax_planning
+  - salary_and_income_management
+  - emi_and_debt_calculation
+  - smart_spending_habits
+  - health_insurance_guidance
+  - retirement_planning
+  - education_loans
+  - vehicle_loans
+  - monthly_budget_planning
+  - emergency_fund_creation
+  - understanding_credit_score
+  - mutual_funds
+  - fixed_deposits
+  - inflation_and_purchasing_power
+  - home_buying_finances
+  - balance_transfers
+  - debt_traps
+  - financial_security_tips
+  - freelance_and_gig_economy_finance
+  - finance_apps_usage
+  - bank_account_linking
+  - paying_utility_bills
+  - cryptocurrency_basics
+  - setting_financial_goals
+  - international_money_transfers
+  - bank_charges
+  - filing_tax_returns
+  - upi_and_online_payment_safety
+  - planning_for_annual_expenses
+
+responses:
+  utter_budgeting_tips:
+    - text: "Use the 50/30/20 rule: 50% needs, 30% wants, 20% savings."
+
+  utter_saving_strategies:
+    - text: "Automate savings each month, set clear goals, and cut recurring costs."
+
+  utter_expense_tracking:
+    - text: "Use apps like Mint or a simple spreadsheet to log every expense."
+
+  utter_credit_card_management:
+    - text: "Pay your full balance each month and avoid carrying debt."
+
+  utter_loans_and_interest:
+    - text: "Compare interest rates, use EMI calculators, and borrow only what's needed."
+
+  utter_investment_basics:
+    - text: "Start with low-cost index funds and diversify across asset classes."
+
+  utter_tax_planning:
+    - text: "Maximize deductions under sections like 80C and HRA, file before deadline."
+
+  utter_salary_and_income_management:
+    - text: "Split your salary into needs, wants, savings, and investments."
+
+  utter_emi_and_debt_calculation:
+    - text: "EMI = [P×R×(1+R)^N]/[(1+R)^N–1], where R is monthly rate."
+
+  utter_smart_spending_habits:
+    - text: "Wait 24 hours before impulse purchases to curb overspending."
+
+  utter_health_insurance_guidance:
+    - text: "Compare copays, deductibles, and network providers before buying."
+
+  utter_retirement_planning:
+    - text: "Start early to leverage compounding; use retirement accounts."
+
+  utter_education_loans:
+    - text: "Opt for government-backed loans first; compare rates and fees."
+
+  utter_vehicle_loans:
+    - text: "Negotiate rates, consider pre-approval, and watch out for hidden fees."
+
+  utter_monthly_budget_planning:
+    - text: "List fixed vs variable expenses, then allocate the remainder to savings."
+
+  utter_emergency_fund_creation:
+    - text: "Build 3–6 months of expenses in a liquid account."
+
+  utter_understanding_credit_score:
+    - text: "Check annually, dispute errors, and keep utilization below 30%."
+
+  utter_mutual_funds:
+    - text: "Choose funds with low expense ratios and consistent track records."
+
+  utter_fixed_deposits:
+    - text: "Ladder FDs to balance liquidity and interest-rate gains."
+
+  utter_inflation_and_purchasing_power:
+    - text: "Invest in assets (stocks, real estate) that tend to outpace inflation."
+
+  utter_home_buying_finances:
+    - text: "Get mortgage pre-approval, budget for down payment and closing costs."
+
+  utter_balance_transfers:
+    - text: "Use 0% promo offers but watch for transfer and annual fees."
+
+  utter_debt_traps:
+    - text: "Avoid high-cost payday loans; pay high-interest debt first."
+
+  utter_financial_security_tips:
+    - text: "Diversify income, maintain adequate insurance, and keep an emergency fund."
+
+  utter_freelance_and_gig_economy_finance:
+    - text: "Track invoices, set aside taxes, and budget for irregular pay."
+
+  utter_finance_apps_usage:
+    - text: "Use apps with bank-grade security and clear data-export features."
+
+  utter_bank_account_linking:
+    - text: "Link via OAuth, review permissions, and revoke access when needed."
+
+  utter_paying_utility_bills:
+    - text: "Set up autopay with reminders to avoid late fees."
+
+  utter_cryptocurrency_basics:
+    - text: "Understand volatility; invest only what you can afford to lose."
+
+  utter_setting_financial_goals:
+    - text: "Define SMART goals: Specific, Measurable, Achievable, Relevant, Time-bound."
+
+  utter_international_money_transfers:
+    - text: "Compare FX rates/fees on Wise, Revolut or your bank before sending."
+
+  utter_bank_charges:
+    - text: "Review statements monthly; negotiate or waive maintenance fees."
+
+  utter_filing_tax_returns:
+    - text: "Gather proofs, file online before deadline, and claim all eligible deductions."
+
+  utter_upi_and_online_payment_safety:
+    - text: "Enable 2FA, avoid public Wi-Fi, and verify payee details."
+
+  utter_planning_for_annual_expenses:
+    - text: "List yearly costs (insurance, taxes, subscriptions) and divide into months."

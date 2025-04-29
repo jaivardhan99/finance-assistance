@@ -20,22 +20,32 @@ const GeminiChatBot = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch("http://localhost:5005/webhooks/rest/webhook", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          messages: [...messages, userMessage],
+          sender: "user123", // You can make this dynamic per session
+          message: input,
         }),
       });
 
       const data = await res.json();
-      const botMessage: Message = {
-        role: "assistant",
-        content: data.choices[0].message.content,
-      };
-      setMessages((prev) => [...prev, botMessage]);
+
+      if (data && data.length > 0) {
+        data.forEach((msgObj: any) => {
+          if (msgObj.text) {
+            const botMessage: Message = {
+              role: "assistant",
+              content: msgObj.text,
+            };
+            setMessages((prev) => [...prev, botMessage]);
+          }
+        });
+      }
     } catch (err) {
-      console.error("Error talking to GPT:", err);
+      console.error("Error talking to Rasa:", err);
     } finally {
       setLoading(false);
     }
@@ -90,4 +100,4 @@ const GeminiChatBot = () => {
   );
 };
 
-export default GeminiChatBot;
+export default GeminiChatBot
